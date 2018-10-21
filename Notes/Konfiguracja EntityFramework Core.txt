@@ -1,0 +1,13 @@
+1. Ustawienie wersji .NET Core na 2.1
+2. Zainstalowanie Package z Nugetów:
+- Microsoft.EntityFrameworkCore
+- Microsoft.EntityFrameworkCore.SqlServer
+- Microsoft.EntityFrameworkCore.SqlServer.Design
+- Microsoft.EntityFrameworkCore.Tools.DotNet
+3. W przypadku problemów z zainstalowaniem ostatniego z package'ów dodaæ go do projektu rêcznie
+<ItemGroup>
+	<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3"/>
+</ItemGroup> 
+
+Wykonaæ z Developer Command Prompt for VS 2017 ze œcie¿ki w której znajduje siê projekt:
+dotnet ef dbcontext scaffold "Server=nazwaServera;Database=dbname;Trusted_Connection=False;User ID=login;Password=password;" Microsoft.EntityFrameworkCore.SqlServer -o nazwafolderudlamodeli -c nazwacontextu
