@@ -15,7 +15,7 @@ namespace LoanControllerAPI.DAL
         {
         }
 
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<User> User { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,7 +28,7 @@ namespace LoanControllerAPI.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Users>(entity =>
+            modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(e => e.Email)
                     .IsRequired()

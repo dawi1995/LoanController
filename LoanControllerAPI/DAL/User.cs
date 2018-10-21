@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace LoanControllerAPI.DAL
 {
-    public partial class Users
+    public partial class User
     {
         public int Id { get; set; }
         public string Email { get; set; }
