@@ -30,12 +30,14 @@ namespace LoanControllerAPI.Managers
             var expires = DateTime.UtcNow.AddDays(7);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
+                Issuer = "Issuer",
+                Audience = "Audience",
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim(ClaimTypes.Name, user.Id.ToString())
                 }),
-                Expires = expires,
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                Expires = expires
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);

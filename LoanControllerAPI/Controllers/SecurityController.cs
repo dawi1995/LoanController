@@ -59,6 +59,7 @@ namespace LoanControllerAPI.Controllers
         }
 
         // PUT api/values/5
+        [Authorize("Bearer")]
         [HttpGet("test")]
         public ActionResult Test()
         {
