@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Net.Http;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using LoanControllerAPI.DAL;
-using LoanControllerAPI.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Authorization;
-using System.Text;
+﻿using LoanControllerAPI.DAL;
 using LoanControllerAPI.Managers;
+using LoanControllerAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace LoanControllerAPI.Controllers
 {
@@ -39,7 +32,7 @@ namespace LoanControllerAPI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500);
+                return StatusCode(500, ex);
             }
         }
 
@@ -54,16 +47,32 @@ namespace LoanControllerAPI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500);
+                return StatusCode(500, ex);
             }
         }
 
         // PUT api/values/5
         [Authorize("Bearer")]
         [HttpGet("test")]
-        public ActionResult Test()
+        public ActionResult ChangePassword(ChangePasswordRequest changePasswordRequest)
         {
-            return Ok(true);
+            try
+            {
+                bool status = _securityManager.ChangePassword(changePasswordRequest);
+                if (status)
+                {
+                    return Ok(status);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+
         }
 
         // DELETE api/values/5

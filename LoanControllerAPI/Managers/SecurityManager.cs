@@ -57,5 +57,35 @@ namespace LoanControllerAPI.Managers
             User result = _securityRepository.Insert(userAfterEncoding);
             return result;
         }
+
+        public bool ChangePassword(ChangePasswordRequest changePasswordRequest)
+        {
+            User userToChangePassword = _securityRepository.GetUserById(changePasswordRequest.UserID);
+            if (userToChangePassword != null)
+            {
+                if (userToChangePassword.Password == SecurityHelper.EncodePassword(changePasswordRequest.OldPassword, SecurityHelper.SALT))
+                {
+                    User updateUser = new User { Id = userToChangePassword.Id, Email = userToChangePassword.Email, Password = SecurityHelper.EncodePassword(changePasswordRequest.NewPassword, SecurityHelper.SALT) };
+                    User updatedUser = _securityRepository.Update(updateUser);
+                    if (updatedUser != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+        }
     }
 }

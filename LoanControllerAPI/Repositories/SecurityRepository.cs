@@ -22,5 +22,21 @@ namespace LoanControllerAPI.Repositories
             _context.SaveChanges();
             return user;
         }
+
+        public User GetUserById(int userId)
+        {
+            return _context.User.FirstOrDefault(u => u.Id == userId);
+        }
+
+        public User Update(User updateUser)
+        {
+            User userToUpdate = _context.User.FirstOrDefault(u => u.Id == updateUser.Id);
+            if (userToUpdate != null)
+            {
+                userToUpdate.Password = updateUser.Password;
+                _context.SaveChanges();
+            }
+            return userToUpdate;
+        }
     }
 }
