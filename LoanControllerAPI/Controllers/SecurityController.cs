@@ -53,15 +53,15 @@ namespace LoanControllerAPI.Controllers
 
         // PUT api/values/5
         [Authorize("Bearer")]
-        [HttpGet("test")]
-        public ActionResult ChangePassword(ChangePasswordRequest changePasswordRequest)
+        [HttpPost("ChangePassword")]
+        public ActionResult ChangePassword([FromBody]ChangePasswordRequest changePasswordRequest)
         {
             try
             {
-                bool status = _securityManager.ChangePassword(changePasswordRequest);
-                if (status)
+                bool result = _securityManager.ChangePassword(changePasswordRequest);
+                if (result)
                 {
-                    return Ok(status);
+                    return Ok(result);
                 }
                 else
                 {
@@ -75,10 +75,25 @@ namespace LoanControllerAPI.Controllers
 
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpGet("ResetPassword")]
+        public ActionResult ResetPassword(string email)
         {
+            try
+            {
+                bool result = _securityManager.ResetPassword(email);
+                if (result)
+                {
+                    return Ok(result);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
         }
     }
 }

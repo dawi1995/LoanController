@@ -87,5 +87,32 @@ namespace LoanControllerAPI.Managers
             }
 
         }
+        public bool ResetPassword(string email)
+        {
+            User user = _securityRepository.GetUserByEmail(email);
+            if (user != null)
+            {
+                var generatedPassword = Guid.NewGuid().ToString("d").Substring(1, 8);
+                User userEdit = new User();
+                userEdit.Id = user.Id;
+                userEdit.Email = user.Email;
+                userEdit.Password = SecurityHelper.EncodePassword(generatedPassword, SecurityHelper.SALT);
+                User updatedUser = _securityRepository.Update(userEdit);
+                if (updatedUser != null)
+                {
+                    EmailHelper.SendEmail("Reset Password", String.Format("Your new password: {0}", generatedPassword), userEdit.Email);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

@@ -38,5 +38,11 @@ namespace LoanControllerAPI.Repositories
             }
             return userToUpdate;
         }
+
+        public User GetUserByEmail(string email)
+        {
+            User user = _context.User.FirstOrDefault(u => u.Email == email);
+            return user;
+        }
     }
 }
