@@ -8,6 +8,8 @@
 <ItemGroup>
 	<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3"/>
 </ItemGroup> 
-
+Zc763U_D~JCe
 Wykonaæ z Developer Command Prompt for VS 2017 ze œcie¿ki w której znajduje siê projekt:
-dotnet ef dbcontext scaffold "Server=nazwaServera;Database=dbname;Trusted_Connection=False;User ID=login;Password=password;" Microsoft.EntityFrameworkCore.SqlServer -o nazwafolderudlamodeli -c nazwacontextu
+dotnet ef dbcontext scaffold "Server=nazwaServera;Database=dbname;Trusted_Connection=False;User ID=login;Password=password;" Microsoft.EntityFrameworkCore.SqlServer -o nazwafolderudlamodeli -c nazwacontextu -f
+
+dotnet ef dbcontext scaffold "Server=den1.mssql1.gear.host;Database=loancontroller;Trusted_Connection=False;User ID=loancontroller;Password=password;" Microsoft.EntityFrameworkCore.SqlServer -o DAL -c LoanControllerContext

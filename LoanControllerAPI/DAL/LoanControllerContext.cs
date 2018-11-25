@@ -15,6 +15,7 @@ namespace LoanControllerAPI.DAL
         {
         }
 
+        public virtual DbSet<Debt> Debt { get; set; }
         public virtual DbSet<User> User { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -28,6 +29,13 @@ namespace LoanControllerAPI.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Debt>(entity =>
+            {
+                entity.Property(e => e.DebtAmount).HasColumnType("decimal(14, 2)");
+
+                entity.Property(e => e.InstallmentAmount).HasColumnType("decimal(14, 2)");
+            });
+
             modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(e => e.Email)
