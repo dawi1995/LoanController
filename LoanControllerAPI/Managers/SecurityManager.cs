@@ -53,8 +53,12 @@ namespace LoanControllerAPI.Managers
 
         public User RegisterUser(User user)
         {
-            User userAfterEncoding = new User { Email = user.Email, Password = SecurityHelper.EncodePassword(user.Password, SecurityHelper.SALT) };
-            User result = _securityRepository.Insert(userAfterEncoding);
+            User result = null;
+            if (_securityRepository.GetUserByEmail(user.Email) == null)
+            {
+                User userAfterEncoding = new User { Email = user.Email, Password = SecurityHelper.EncodePassword(user.Password, SecurityHelper.SALT) };
+                result = _securityRepository.Insert(userAfterEncoding);
+            }
             return result;
         }
 

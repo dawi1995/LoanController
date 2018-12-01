@@ -11,7 +11,6 @@ namespace LoanControllerAPI.Controllers
     [Route("api/security")]
     public class SecurityController : Controller
     {
-        LoanControllerContext _context = new LoanControllerContext();
         SecurityManager _securityManager = new SecurityManager();
 
         // GET api/security
@@ -28,7 +27,10 @@ namespace LoanControllerAPI.Controllers
             try
             {
                 User result = _securityManager.RegisterUser(user);
-                return Ok(result);
+                if (result != null)
+                    return Ok(result);
+                else
+                    return BadRequest("Login is not available");
             }
             catch (Exception ex)
             {

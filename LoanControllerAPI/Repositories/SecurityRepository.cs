@@ -18,7 +18,7 @@ namespace LoanControllerAPI.Repositories
         public User Insert(User userLogin)
         {
 
-            User user = _context.User.Add(userLogin).CurrentValues.ToObject() as User;
+            User user = _context.User.Add(userLogin).Entity;
             _context.SaveChanges();
             return user;
         }
