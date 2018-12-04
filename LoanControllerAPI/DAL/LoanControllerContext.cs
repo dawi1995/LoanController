@@ -33,7 +33,15 @@ namespace LoanControllerAPI.DAL
             {
                 entity.Property(e => e.DebtAmount).HasColumnType("decimal(14, 2)");
 
+                entity.Property(e => e.InsertDt)
+                    .HasColumnName("InsertDT")
+                    .HasColumnType("datetime");
+
                 entity.Property(e => e.InstallmentAmount).HasColumnType("decimal(14, 2)");
+
+                entity.Property(e => e.UpdateDt)
+                    .HasColumnName("UpdateDT")
+                    .HasColumnType("datetime");
             });
 
             modelBuilder.Entity<User>(entity =>

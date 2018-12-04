@@ -13,5 +13,8 @@ namespace LoanControllerAPI.DAL
         public int? ReminderDay { get; set; }
         public TimeSpan? ReminderTime { get; set; }
         public bool NotificationEnabled { get; set; }
+        public DateTime? InsertDt { get; set; }
+        public DateTime? UpdateDt { get; set; }
+        public int? UpdatedByUser { get; set; }
     }
 }

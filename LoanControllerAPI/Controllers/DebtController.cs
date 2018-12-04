@@ -25,7 +25,7 @@ namespace LoanControllerAPI.Controllers
                 debt.UserId = userId;
                 Debt result = _debtManager.AddDebt(debt);
                 if (result != null)
-                    return Ok();
+                    return Ok(result);
                 else
                     return StatusCode(500, "Result is null");
             }
@@ -34,6 +34,19 @@ namespace LoanControllerAPI.Controllers
                 return StatusCode(500, ex);
             }
 
+        }
+
+        public ActionResult SelectDebtsForUser(int userId, int limit, int offset)
+        {
+            try
+            {
+                IEnumerable<Debt> result = _debtManager.SelectDebtForUser(userId, limit, offset);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
         }
     }
 }
