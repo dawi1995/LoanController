@@ -35,11 +35,13 @@ namespace LoanControllerAPI.Controllers
             }
 
         }
-
-        public ActionResult SelectDebtsForUser(int userId, int limit, int offset)
+        [Authorize("Bearer")]
+        [HttpGet("SelectDebtsForUser")]
+        public ActionResult SelectDebtsForUser(int limit, int offset)
         {
             try
             {
+                var userId = Convert.ToInt32(HttpContext.User.Identity.Name);
                 IEnumerable<Debt> result = _debtManager.SelectDebtForUser(userId, limit, offset);
                 return Ok(result);
             }
