@@ -115,7 +115,10 @@ namespace LoanControllerAPI
                     else await next();
                 });
             });
-
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor | Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto
+            });
             app.UseCors("policy");
             app.UseAuthentication();
             app.UseMvc();
