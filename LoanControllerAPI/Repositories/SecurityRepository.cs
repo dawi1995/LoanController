@@ -17,10 +17,9 @@ namespace LoanControllerAPI.Repositories
 
         public User Insert(User userLogin)
         {
-
-            User user = _context.User.Add(userLogin).Entity;
+            _context.User.Add(userLogin);
             _context.SaveChanges();
-            return user;
+            return userLogin;
         }
 
         public User GetUserById(int userId)

@@ -16,7 +16,7 @@ namespace LoanControllerAPI.Controllers
     {
         DebtManager _debtManager = new DebtManager();
         [Authorize("Bearer")]
-        [HttpGet("AddDebt")]
+        [HttpPost("AddDebt")]
         public ActionResult AddDebt(Debt debt)
         {
             try

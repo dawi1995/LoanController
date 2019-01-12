@@ -12,9 +12,9 @@ namespace LoanControllerAPI.Repositories
 
         public Debt Insert(Debt debt)
         {
-            Debt result = _context.Debt.Add(debt).CurrentValues.ToObject() as Debt;
+            _context.Debt.Add(debt);
             _context.SaveChanges();
-            return result;
+            return debt;
         }
 
         public Debt Update(Debt debt)
