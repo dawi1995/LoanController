@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -9,11 +10,13 @@ namespace LoanControllerApp
 {
 	public partial class App : Application
 	{
-		public App ()
+        public static string UserToken = null;
+        public App ()
 		{
-			InitializeComponent();
-
-			MainPage = new LoanControllerApp.MainPage();
+            CultureInfo currentCulture = new CultureInfo("en-US");
+            CultureInfo.DefaultThreadCurrentCulture = currentCulture;
+            InitializeComponent();
+			MainPage = new NavigationPage(new LoanControllerApp.MainPage());
 		}
 
 		protected override void OnStart ()

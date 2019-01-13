@@ -1,11 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:LoanControllerApp"
+             xmlns:local="clr-namespace:LoanControllerApp;assembly=LoanControllerApp"
              x:Class="LoanControllerApp.MainPage">
-
-	<Label Text="Welcome to Xamarin.Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+    <Grid BackgroundColor="#fefce5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <Image  Aspect="AspectFit" x:Name="linkToPage" Grid.Row="0" Margin="0, 20, 0, 20" Source="{local:ImageResource LoanControllerApp.Assets.applogo.png}" VerticalOptions="Center" HorizontalOptions="Center" >
+            </Image>
+            <StackLayout Grid.Row="1">
+                <local:EntryWithMessage x:Name="emailEntry" MessageText="{local:Language Email}" MessageTextColorHex="#333436" Placeholder="test@gmail.com" Margin="40,0,40,0"></local:EntryWithMessage>
+                <local:EntryWithMessage x:Name="passwordEntry" MessageText="{local:Language Password}" Margin="40,0,40,0" Placeholder="{local:Language Password}" IsPassword="True"></local:EntryWithMessage>
+                <Button BackgroundColor="#69BB56" TextColor="#333436" Text="{local:Language Login}" WidthRequest="200" Margin="0,20,0,0" HorizontalOptions="Center" Clicked="Login_Clicked"></Button>
+                <Label FontSize="Small" TextColor="#333436" VerticalOptions="Center" HorizontalOptions="Center" Text="{local:Language Registration}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Register_Clicked"/>
+                        <ClickGestureRecognizer Clicked="Register_Clicked"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </Grid>
+    </Grid>
 
 </ContentPage>
