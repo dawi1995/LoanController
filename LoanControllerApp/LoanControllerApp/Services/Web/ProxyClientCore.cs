@@ -30,7 +30,7 @@ namespace LoanControllerApp.Services.Web
             _httpClient = new HttpClient(messageHandler);
         }
 
-        public ProxyClientCore(string token, string secondUrl = null, string oAuthType = "Basic")
+        public ProxyClientCore(string token, string secondUrl = null, string oAuthType = "Bearer")
             : this()
         {
             _token = token;
