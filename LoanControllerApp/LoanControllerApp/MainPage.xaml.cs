@@ -50,7 +50,7 @@ namespace LoanControllerApp
 
                 if(loginData == null || string.IsNullOrEmpty(loginData.Token))
                 {
-                    DisplayAlert("Błąd", "Dane są nprawidłowe", "OK");
+                    await DisplayAlert("Błąd", "Dane są nprawidłowe", "OK");
                 }
                 else
                 {
