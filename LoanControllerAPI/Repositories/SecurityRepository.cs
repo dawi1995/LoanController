@@ -14,7 +14,6 @@ namespace LoanControllerAPI.Repositories
         {
             return _context.User.FirstOrDefault(u => u.Email == userLogin.Email && u.Password == userLogin.Password);
         }
-
         public User Insert(User userLogin)
         {
             _context.User.Add(userLogin);

@@ -16,4 +16,14 @@
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\" />
+    <Folder Include="Controls\" />
+    <Folder Include="DependencyServices\" />
+    <Folder Include="Models\" />
+    <Folder Include="Views\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
 </Project>
